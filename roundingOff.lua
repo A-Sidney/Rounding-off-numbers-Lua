@@ -87,10 +87,16 @@ local function roundOff(number, sigFigure)
         print("Rounding off this number " .. sigUnit)
         local roundedSigUnit = round(sigUnit)
         print("Rounded unit is " .. roundedSigUnit)
-        local answer = divideTen(roundedSigUnit, sigFigure)
-        print("unit answer = " .. answer)
-        answer = multiTen(answer, displacement)
-        return answer
+        local diff
+        if displacement > sigFigure then
+            diff = displacement - sigFigure
+            local answer = multiTen(roundedSigUnit, diff)
+            return answer
+        else
+            diff = sigFigure - displacement
+            local answer = divideTen(roundedSigUnit, diff)
+            return answer
+        end
     end
 
     local function solve()
