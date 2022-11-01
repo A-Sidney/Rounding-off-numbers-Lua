@@ -100,14 +100,18 @@ local function roundOff(number, sigFigure)
     end
 
     local function solve()
+        local answer
         if number > 0 and number < 1 then
-            local answer = computeDec(number, sigFigure)
+            answer = computeDec(number, sigFigure)
             print("Answer is " .. answer)
         else
-            local answer = compute(number, sigFigure)
+            answer = compute(number, sigFigure)
             print("Answer is " .. answer)
         end
+        return answer
     end
-    solve()
+    local answer = solve()
+    return answer
 end
-roundOff(number, sigFigure)
+local roundedAnswer = roundOff(number, sigFigure)
+print("your rounded answer is " .. roundedAnswer .. ", to the nearest " .. sigFigure .. " s.f.")
